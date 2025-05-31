@@ -160,6 +160,7 @@ export default defineConfig(({ command, mode }) => {
         '../../node_modules/.cache',
         '../../node_modules/twenty-ui',
       ],
+      include: ['hex-rgb'],
     },
 
     build: {

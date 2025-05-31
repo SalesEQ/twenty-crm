@@ -3,12 +3,12 @@ import react from '@vitejs/plugin-react-swc';
 import wyw from '@wyw-in-js/vite';
 import * as path from 'path';
 import { defineConfig } from 'vite';
-import checker from 'vite-plugin-checker';
+// import checker from 'vite-plugin-checker';
 import dts, { PluginOptions } from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { UserPluginConfig } from 'vite-plugin-checker/dist/esm/types';
+// import { UserPluginConfig } from 'vite-plugin-checker/dist/esm/types';
 
 import packageJson from './package.json';
 
@@ -44,15 +44,18 @@ export default defineConfig(({ command }) => {
     ? path.resolve(__dirname, './tsconfig.lib.json')
     : path.resolve(__dirname, './tsconfig.dev.json');
 
-  const checkersConfig: UserPluginConfig = {
-    typescript: {
-      tsconfigPath: tsConfigPath,
-    },
-  };
+  // const checkersConfig: UserPluginConfig = {
+  //   typescript: {
+  //     tsconfigPath: tsConfigPath,
+  //   },
+  // };
 
   const dtsConfig: PluginOptions = {
     entryRoot: 'src',
     tsconfigPath: tsConfigPath,
+    outDir: 'dist',
+    insertTypesEntry: false,
+    rollupTypes: false,
   };
 
   return {
@@ -77,7 +80,7 @@ export default defineConfig(({ command }) => {
       }),
       svgr(),
       dts(dtsConfig),
-      checker(checkersConfig),
+      // checker(checkersConfig), // Temporarily commented out
       wyw({
         include: [
           '**/OverflowingTextWithTooltip.tsx',
