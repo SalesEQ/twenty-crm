@@ -143,6 +143,26 @@ export const COMPANY_STANDARD_FIELD_IDS = {
   searchVector: '85c71601-72f9-4b7b-b343-d46100b2c74d',
 };
 
+export const CALL_STANDARD_FIELD_IDS = {
+  title: '20202020-call-4d99-4e2e-a84c-4a27837b1ece',
+  duration: '20202020-call-0c28-43d8-8ba5-3659924d3489',
+  startedAt: '20202020-call-a82a-4ee2-96cc-a18a3259d953',
+  endedAt: '20202020-call-c5ce-4adc-b7b6-9c0979fc55e7',
+  eqConfidence: '20202020-call-8965-464a-8a75-74bafc152a0b',
+  eqEmpathy: '20202020-call-ebeb-4beb-b9ad-6848036fb451',
+  eqClarity: '20202020-call-6f64-4fd9-9580-9c1991c7d8c3',
+  summaryMd: '20202020-call-602a-495c-9776-f5d5b11d227b',
+  recordingUrl: '20202020-call-ba6b-438a-8213-2c5ba28d76a2',
+  createdBy: '20202020-call-9b4e-462b-991d-a0ee33326454',
+  opportunity: '20202020-call-3213-4ddf-9494-6422bcff8d7c',
+  person: '20202020-call-95b8-4e10-9881-edb5d4765f9d',
+  company: '20202020-call-c2a5-4c9b-9d9a-582bcd57fbc8',
+  attachments: '20202020-call-cb17-4a61-8f8f-3be6730480de',
+  timelineActivities: '20202020-call-bae0-4556-a74a-a9c686f77a88',
+  favorites: '20202020-call-add3-4658-8e23-d70dccb6d0ec',
+  searchVector: '20202020-call-4d1d-41ac-b13b-621631298d55',
+};
+
 export const CONNECTED_ACCOUNT_STANDARD_FIELD_IDS = {
   handle: '20202020-c804-4a50-bb05-b3a9e24f1dec',
   provider: '20202020-ebb0-4516-befc-a9e95935efd5',
@@ -330,6 +350,9 @@ export const OPPORTUNITY_STANDARD_FIELD_IDS = {
   attachments: '20202020-87c7-4118-83d6-2f4031005209',
   timelineActivities: '20202020-30e2-421f-96c7-19c69d1cf631',
   searchVector: '428a0da5-4b2e-4ce3-b695-89a8b384e6e3',
+  // SalesEQ fields
+  eqRiskScore: '20202020-eq01-4a2b-8c3d-4e5f6a7b8c9d',
+  nextBestAction: '20202020-eq02-4a2b-8c3d-4e5f6a7b8c9e',
 };
 
 export const PERSON_STANDARD_FIELD_IDS = {
@@ -554,6 +577,7 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   calendarChannel: CALENDAR_CHANNEL_STANDARD_FIELD_IDS,
   calendarEventParticipant: CALENDAR_EVENT_PARTICIPANT_STANDARD_FIELD_IDS,
   calendarEvent: CALENDAR_EVENT_STANDARD_FIELD_IDS,
+  call: CALL_STANDARD_FIELD_IDS,
   comment: COMMENT_STANDARD_FIELD_IDS,
   company: COMPANY_STANDARD_FIELD_IDS,
   connectedAccount: CONNECTED_ACCOUNT_STANDARD_FIELD_IDS,

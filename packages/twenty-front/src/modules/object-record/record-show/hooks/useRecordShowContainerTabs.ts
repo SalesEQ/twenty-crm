@@ -11,11 +11,11 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
-  IconCalendarEvent,
-  IconHome,
-  IconMail,
-  IconNotes,
-  IconSettings,
+    IconCalendarEvent,
+    IconHome,
+    IconMail,
+    IconNotes,
+    IconSettings,
 } from 'twenty-ui/display';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { FeatureFlagKey } from '~/generated/graphql';
@@ -206,6 +206,28 @@ export const useRecordShowContainerTabs = (
           tasks: null,
           notes: null,
           files: null,
+        },
+      },
+      [CoreObjectNameSingular.Call]: {
+        tabs: {
+          main: {
+            title: 'Call Details',
+            position: 100,
+            Icon: IconHome,
+            cards: [
+              { type: CardType.EQAnalyzerCard },
+              { type: CardType.FieldCard },
+              { type: CardType.TimelineCard },
+            ],
+            hide: {
+              ifMobile: false,
+              ifDesktop: false,
+              ifInRightDrawer: false,
+              ifFeaturesDisabled: [],
+              ifRequiredObjectsInactive: [],
+              ifRelationsMissing: [],
+            },
+          },
         },
       },
     }),

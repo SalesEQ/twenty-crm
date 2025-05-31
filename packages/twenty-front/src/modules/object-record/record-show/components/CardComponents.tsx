@@ -20,6 +20,7 @@ import { WorkflowRunVisualizerComponentInstanceContext } from '@/workflow/workfl
 import { WorkflowVisualizerComponentInstanceContext } from '@/workflow/workflow-diagram/states/contexts/WorkflowVisualizerComponentInstanceContext';
 import styled from '@emotion/styled';
 import { useId } from 'react';
+import { EQAnalyzerCard } from './EQAnalyzerCard';
 
 const StyledGreyBox = styled.div<{ isInRightDrawer?: boolean }>`
   background: ${({ theme, isInRightDrawer }) =>
@@ -144,4 +145,8 @@ export const CardComponents: Record<CardType, CardComponentType> = {
       </WorkflowVisualizerComponentInstanceContext.Provider>
     );
   },
+
+  [CardType.EQAnalyzerCard]: ({ targetableObject, isInRightDrawer }) => (
+    <EQAnalyzerCard targetableObject={targetableObject} isInRightDrawer={isInRightDrawer} />
+  ),
 };

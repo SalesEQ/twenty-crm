@@ -28,11 +28,12 @@ import { PERSON_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspac
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 import {
-  FieldTypeAndNameMetadata,
-  getTsVectorColumnExpressionFromFields,
+    FieldTypeAndNameMetadata,
+    getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { CalendarEventParticipantWorkspaceEntity } from 'src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity';
+import { CallWorkspaceEntity } from 'src/modules/call/standard-objects/call.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { MessageParticipantWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-participant.workspace-entity';
@@ -73,7 +74,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.name,
     type: FieldMetadataType.FULL_NAME,
     label: msg`Name`,
-    description: msg`Contact’s name`,
+    description: msg`Contact's name`,
     icon: 'IconUser',
   })
   @WorkspaceIsNullable()
@@ -83,7 +84,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.emails,
     type: FieldMetadataType.EMAILS,
     label: msg`Emails`,
-    description: msg`Contact’s Emails`,
+    description: msg`Contact's Emails`,
     icon: 'IconMail',
   })
   @WorkspaceIsUnique()
@@ -93,7 +94,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.linkedinLink,
     type: FieldMetadataType.LINKS,
     label: msg`Linkedin`,
-    description: msg`Contact’s Linkedin account`,
+    description: msg`Contact's Linkedin account`,
     icon: 'IconBrandLinkedin',
   })
   @WorkspaceIsNullable()
@@ -103,7 +104,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.xLink,
     type: FieldMetadataType.LINKS,
     label: msg`X`,
-    description: msg`Contact’s X/Twitter account`,
+    description: msg`Contact's X/Twitter account`,
     icon: 'IconBrandX',
   })
   @WorkspaceIsNullable()
@@ -113,7 +114,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.jobTitle,
     type: FieldMetadataType.TEXT,
     label: msg`Job Title`,
-    description: msg`Contact’s job title`,
+    description: msg`Contact's job title`,
     icon: 'IconBriefcase',
   })
   jobTitle: string;
@@ -122,7 +123,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.phone,
     type: FieldMetadataType.TEXT,
     label: msg`Phone`,
-    description: msg`Contact’s phone number`,
+    description: msg`Contact's phone number`,
     icon: 'IconPhone',
   })
   @WorkspaceIsDeprecated()
@@ -132,7 +133,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.phones,
     type: FieldMetadataType.PHONES,
     label: msg`Phones`,
-    description: msg`Contact’s phone numbers`,
+    description: msg`Contact's phone numbers`,
     icon: 'IconPhone',
   })
   phones: PhonesMetadata;
@@ -141,7 +142,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.city,
     type: FieldMetadataType.TEXT,
     label: msg`City`,
-    description: msg`Contact’s city`,
+    description: msg`Contact's city`,
     icon: 'IconMap',
   })
   city: string;
@@ -150,7 +151,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.avatarUrl,
     type: FieldMetadataType.TEXT,
     label: msg`Avatar`,
-    description: msg`Contact’s avatar`,
+    description: msg`Contact's avatar`,
     icon: 'IconFileUpload',
   })
   @WorkspaceIsSystem()
@@ -181,7 +182,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.company,
     type: RelationType.MANY_TO_ONE,
     label: msg`Company`,
-    description: msg`Contact’s company`,
+    description: msg`Contact's company`,
     icon: 'IconBuildingSkyscraper',
     inverseSideTarget: () => CompanyWorkspaceEntity,
     inverseSideFieldKey: 'people',
@@ -204,6 +205,18 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   pointOfContactForOpportunities: Relation<OpportunityWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: '20202020-call-95b8-4e10-9881-edb5d4765f9d', // CALL_STANDARD_FIELD_IDS.person
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Calls`,
+    description: msg`Calls linked to this person`,
+    icon: 'IconPhone',
+    inverseSideTarget: () => CallWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  calls: Relation<CallWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.taskTargets,
